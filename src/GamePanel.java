@@ -1,22 +1,45 @@
-import javax.swing.JFrame;
+import java.awt.Color;
+import java.awt.Graphics;
 
-public class LeagueInvaders {
-	JFrame frame;
-	public static final int WIDTH = 500;
-	public static final int HEIGHT = 800;
-	GamePanel panel;
-	public static void main(String[] args) {
-		LeagueInvaders invaders = new LeagueInvaders ();
-		invaders.setup();
+import javax.swing.JPanel;
+
+public class GamePanel extends JPanel {
+	final int MENU = 0;
+	final int GAME = 1;
+	final int END = 2;
+	int currentState = MENU;
+	@Override
+	public void paintComponent(Graphics g){
+		if (currentState == MENU) {
+			drawMenuState (g);
+		}
+		else if(currentState == GAME){
+		    drawGameState(g);
+		}
+		else if(currentState == END){
+		    drawEndState(g);
+		}
 	}
-	LeagueInvaders (){
-		frame = new JFrame ();
-		panel = new GamePanel ();
+	void updateMenuState(){
+		
 	}
-	void setup () {
-		frame.add(panel);
-		frame.setVisible(true);
-		frame.setSize(WIDTH, HEIGHT);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	void updateGameState () {
+		
+	}
+	void updateEndState() {
+		
+	}
+	void drawMenuState (Graphics g) {
+		g.setColor (Color.BLUE);
+		g.fillRect (0,0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+	}
+	void drawGameState (Graphics g) {
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
+	}
+	void drawEndState (Graphics g) {
+		g.setColor(Color.RED);
+		g.fillRect(0, 0, LeagueInvaders.WIDTH, LeagueInvaders.HEIGHT);
 	}
 }
+
